@@ -1,0 +1,10 @@
+11:10:58 **** Incremental Build of configuration Debug for project 93_STM32_CM4 ****
+make -j8 all 
+arm-none-eabi-size  93_STM32_CM4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12904	     12	   1716	  14632	   3928	93_STM32_CM4.elf
+Finished building: default.size.stdout
+ 
+
+11:10:58 Build Finished. 0 errors, 0 warnings. (took 71ms)
+
