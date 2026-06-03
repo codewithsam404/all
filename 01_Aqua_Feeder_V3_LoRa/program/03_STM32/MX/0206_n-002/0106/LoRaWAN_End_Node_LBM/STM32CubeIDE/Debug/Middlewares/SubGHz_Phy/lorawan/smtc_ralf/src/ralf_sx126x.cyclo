@@ -1,0 +1,4 @@
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/Middlewares/Third_Party/SubGHz_Phy/lorawan/smtc_ralf/src/ralf_sx126x.c:84:14:ralf_sx126x_setup_gfsk	11
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/Middlewares/Third_Party/SubGHz_Phy/lorawan/smtc_ralf/src/ralf_sx126x.c:141:14:ralf_sx126x_setup_lora	8
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/Middlewares/Third_Party/SubGHz_Phy/lorawan/smtc_ralf/src/ralf_sx126x.c:188:14:ralf_sx126x_setup_flrc	1
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/Middlewares/Third_Party/SubGHz_Phy/lorawan/smtc_ralf/src/ralf_sx126x.c:193:14:ralf_sx126x_setup_lora_cad	5

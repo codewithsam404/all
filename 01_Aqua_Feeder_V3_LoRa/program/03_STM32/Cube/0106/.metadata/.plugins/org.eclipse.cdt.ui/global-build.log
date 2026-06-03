@@ -1,0 +1,21 @@
+10:05:25 **** Incremental Build of configuration Debug for project LoRaWAN_End_Node_LBM ****
+make -j8 all 
+arm-none-eabi-size  LoRaWAN_End_Node_LBM.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 112248	   1208	  19328	 132784	  206b0	LoRaWAN_End_Node_LBM.elf
+Finished building: default.size.stdout
+ 
+10:05:32 **** Incremental Build of configuration Debug for project LoRaWAN_End_Node_LBM ****
+make -j8 all 
+arm-none-eabi-size  LoRaWAN_End_Node_LBM.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 112248	   1208	  19328	 132784	  206b0	LoRaWAN_End_Node_LBM.elf
+Finished building: default.size.stdout
+ 
+10:09:45 **** Incremental Build of configuration Debug for project LoRaWAN_End_Node_LBM ****
+make -j8 all 
+arm-none-eabi-size  LoRaWAN_End_Node_LBM.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 112248	   1208	  19328	 132784	  206b0	LoRaWAN_End_Node_LBM.elf
+Finished building: default.size.stdout
+ 

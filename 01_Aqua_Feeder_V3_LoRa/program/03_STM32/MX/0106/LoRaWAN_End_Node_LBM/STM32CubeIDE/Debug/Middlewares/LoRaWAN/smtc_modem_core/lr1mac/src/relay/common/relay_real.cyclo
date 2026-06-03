@@ -1,0 +1,2 @@
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac/src/relay/common/relay_real.c:363:25:region_eu_868_relay_get_default	3
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac/src/relay/common/relay_real.c:437:18:smtc_relay_get_default_channel_config	2

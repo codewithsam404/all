@@ -1,0 +1,7 @@
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:46:9:BSP_RADIO_Init	56	static
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:78:9:BSP_RADIO_DeInit	16	static
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:105:9:BSP_RADIO_ConfigRFSwitch	8	static
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:155:9:BSP_RADIO_GetTxConfig	0	static
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:167:9:BSP_RADIO_IsTCXO	0	static
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:179:9:BSP_RADIO_IsDCDC	0	static
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:190:9:BSP_RADIO_GetRFOMaxPowerConfig	0	static

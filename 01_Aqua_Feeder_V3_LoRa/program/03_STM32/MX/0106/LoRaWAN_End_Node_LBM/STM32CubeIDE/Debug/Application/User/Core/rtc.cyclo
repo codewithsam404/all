@@ -1,0 +1,3 @@
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Core/Src/rtc.c:30:6:MX_RTC_Init	4
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Core/Src/rtc.c:86:6:HAL_RTC_MspInit	3
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0106/LoRaWAN_End_Node_LBM/Core/Src/rtc.c:121:6:HAL_RTC_MspDeInit	2

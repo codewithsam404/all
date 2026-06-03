@@ -1,0 +1,10 @@
+2026-06-02 10:20:25,581 [INFO] Activator:176 - 
+
+
+2026-06-02 10:20:25,588 [INFO] Activator:177 - !SESSION log4j initialized
+2026-06-02 10:20:32,582 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2026-06-02 10:20:33,562 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2026-06-02 10:20:33,565 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2026-06-02 10:20:33,567 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2026-06-02 16:05:26,889 [ERROR] ConfigurationRetriever:142 - IOException on connection: Network is unreachable
+2026-06-02 16:05:28,902 [ERROR] ConfigurationRetriever:142 - IOException on connection: Connect timed out

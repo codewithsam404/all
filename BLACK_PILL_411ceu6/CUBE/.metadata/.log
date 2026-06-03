@@ -1,0 +1,18 @@
+!SESSION 2026-05-30 17:13:15.697 -----------------------------------------------
+eclipse.buildId=Version 2.1.1
+java.version=21.0.9
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-05-30 17:13:56.821
+!MESSAGE Log4j2 initialized with config file /home/samuel/git/all/BLACK_PILL_411ceu6/CUBE/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-05-30 17:14:03.684
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-05-30 17:17:32.685
+!MESSAGE Indexed 'MX' (866 sources, 240 headers) in 20.4 sec: 38,226 declarations; 252,895 references; 64 unresolved inclusions; 685 syntax errors; 752 unresolved names (0.26%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-05-30 17:49:26.815
+!MESSAGE Indexed 'uart' (20 sources, 117 headers) in 3.72 sec: 11,054 declarations; 42,857 references; 1 unresolved inclusions; 92 syntax errors; 240 unresolved names (0.44%)
