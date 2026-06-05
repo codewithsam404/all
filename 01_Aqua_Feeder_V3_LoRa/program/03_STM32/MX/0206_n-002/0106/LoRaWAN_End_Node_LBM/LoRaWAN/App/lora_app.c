@@ -807,110 +807,138 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 static void SendTxData(uint8_t port)
 {
-  /* USER CODE BEGIN SendTxData_1 */
-  uint8_t batteryLevel = GetBatteryLevel();
-  sensor_t sensor_data;
-  uint8_t bufferSize = 0;
-  smtc_modem_region_t region = LORAMAC_REGION_EU868;
+    const char *msg = "I'm Samuel";
+    uint8_t bufferSize = strlen(msg);
 
-#ifdef CAYENNE_LPP
-  uint8_t channel = 0;
-#else
-  uint16_t pressure = 0;
-  int16_t temperature = 0;
-  uint16_t humidity = 0;
-  uint32_t i = 0;
-  int32_t latitude = 0;
-  int32_t longitude = 0;
-  uint16_t altitudeGps = 0;
-#endif /* CAYENNE_LPP */
+    // Copy message into buffer
+    memcpy(AppDataBuffer, msg, bufferSize);
 
-  EnvSensors_Read(&sensor_data);
+    // Correct argument order: buffer first, then length
+    smtc_modem_return_code_t rc = smtc_modem_request_uplink(
+        STACK_ID,          // stack id
+        port,              // application port
+        AppDataBuffer,     // pointer to buffer
+        bufferSize,        // payload length
+        false              // unconfirmed uplink
+    );
 
-  APP_LOG(TS_ON, VLEVEL_M, "VDDA: %d\r\n", batteryLevel);
-  APP_LOG(TS_ON, VLEVEL_M, "temp: %d\r\n", (int16_t)(sensor_data.temperature));
-
-  smtc_modem_get_region(STACK_ID, &region);
-
-#ifdef CAYENNE_LPP
-  CayenneLppReset();
-  CayenneLppAddBarometricPressure(channel++, sensor_data.pressure);
-  CayenneLppAddTemperature(channel++, sensor_data.temperature);
-  CayenneLppAddRelativeHumidity(channel++, (uint16_t)(sensor_data.humidity));
-
-  if ((region == LORAMAC_REGION_US915) || (region == LORAMAC_REGION_AU915)
-      || (region == LORAMAC_REGION_AS923_GRP1))
-  {
-    CayenneLppAddDigitalInput(channel++, GetBatteryLevel());
-    CayenneLppAddDigitalOutput(channel++, AppLedStateOn);
-  }
-
-  CayenneLppCopy(AppDataBuffer);
-  bufferSize = CayenneLppGetSize();
-#else  /* not CAYENNE_LPP */
-  humidity    = (uint16_t)(sensor_data.humidity * 10);            /* in %*10     */
-  temperature = (int16_t)(sensor_data.temperature);
-  pressure = (uint16_t)(sensor_data.pressure * 100 / 10); /* in hPa / 10 */
-
-  AppDataBuffer[i++] = HAL_GPIO_ReadPin(LED3_GPIO_Port, LED3_Pin);
-  AppDataBuffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
-  AppDataBuffer[i++] = (uint8_t)(pressure & 0xFF);
-  AppDataBuffer[i++] = (uint8_t)(temperature & 0xFF);
-  AppDataBuffer[i++] = (uint8_t)((humidity >> 8) & 0xFF);
-  AppDataBuffer[i++] = (uint8_t)(humidity & 0xFF);
-
-  if ((region == LORAMAC_REGION_US915) || (region == LORAMAC_REGION_AU915)
-      || (region == LORAMAC_REGION_AS923_GRP1))
-  {
-    AppDataBuffer[i++] = 0;
-    AppDataBuffer[i++] = 0;
-    AppDataBuffer[i++] = 0;
-    AppDataBuffer[i++] = 0;
-  }
-  else
-  {
-    latitude = sensor_data.latitude;
-    longitude = sensor_data.longitude;
-
-    AppDataBuffer[i++] = GetBatteryLevel();        /* 1 (very low) to 254 (fully charged) */
-    AppDataBuffer[i++] = (uint8_t)((latitude >> 16) & 0xFF);
-    AppDataBuffer[i++] = (uint8_t)((latitude >> 8) & 0xFF);
-    AppDataBuffer[i++] = (uint8_t)(latitude & 0xFF);
-    AppDataBuffer[i++] = (uint8_t)((longitude >> 16) & 0xFF);
-    AppDataBuffer[i++] = (uint8_t)((longitude >> 8) & 0xFF);
-    AppDataBuffer[i++] = (uint8_t)(longitude & 0xFF);
-    AppDataBuffer[i++] = (uint8_t)((altitudeGps >> 8) & 0xFF);
-    AppDataBuffer[i++] = (uint8_t)(altitudeGps & 0xFF);
-  }
-
-  bufferSize = i;
-#endif /* CAYENNE_LPP */
-
-  if (JoinLedTimer.IsRunning)
-  {
-    UTIL_TIMER_Stop(&JoinLedTimer);
-    HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_RESET); /* LED_RED */
-  }
-
-  ASSERT_SMTC_MODEM_RC(smtc_modem_request_uplink(STACK_ID, port, false, AppDataBuffer, bufferSize));
-
-  if (EventType == TX_ON_TIMER)
-  {
-    smtc_modem_status_mask_t status_mask = 0;
-    smtc_modem_get_status(STACK_ID, &status_mask);
-    /* Restart periodical uplink alarm */
-    /* It is set value by default APP_TX_DUTYCYCLE. If Certification mode is enabled or during join phase, the time is 10s */
-    if (CertMode || ((status_mask & SMTC_MODEM_STATUS_JOINED) != SMTC_MODEM_STATUS_JOINED))
+    if (rc == SMTC_MODEM_RC_OK)
     {
-      ASSERT_SMTC_MODEM_RC(smtc_modem_alarm_start_timer(CERT_TX_DUTYCYCLE));
+        APP_LOG(TS_ON, VLEVEL_M, "SEND REQUEST: %s\r\n", msg);
     }
     else
     {
-      ASSERT_SMTC_MODEM_RC(smtc_modem_alarm_start_timer(APP_TX_DUTYCYCLE));
+        APP_LOG(TS_ON, VLEVEL_M, "SEND FAILED, rc=%d\r\n", rc);
     }
-  }
-  /* USER CODE END SendTxData_1 */
 }
+
+
+//static void SendTxData(uint8_t port)
+//{
+//  /* USER CODE BEGIN SendTxData_1 */
+//  uint8_t batteryLevel = GetBatteryLevel();
+//  sensor_t sensor_data;
+//  uint8_t bufferSize = 0;
+//  smtc_modem_region_t region = LORAMAC_REGION_EU868;
+//
+//#ifdef CAYENNE_LPP
+//  uint8_t channel = 0;
+//#else
+//  uint16_t pressure = 0;
+//  int16_t temperature = 0;
+//  uint16_t humidity = 0;
+//  uint32_t i = 0;
+//  int32_t latitude = 0;
+//  int32_t longitude = 0;
+//  uint16_t altitudeGps = 0;
+//#endif /* CAYENNE_LPP */
+//
+//  EnvSensors_Read(&sensor_data);
+//
+//  APP_LOG(TS_ON, VLEVEL_M, "VDDA: %d\r\n", batteryLevel);
+//  APP_LOG(TS_ON, VLEVEL_M, "temp: %d\r\n", (int16_t)(sensor_data.temperature));
+//
+//  smtc_modem_get_region(STACK_ID, &region);
+//
+//#ifdef CAYENNE_LPP
+//  CayenneLppReset();
+//  CayenneLppAddBarometricPressure(channel++, sensor_data.pressure);
+//  CayenneLppAddTemperature(channel++, sensor_data.temperature);
+//  CayenneLppAddRelativeHumidity(channel++, (uint16_t)(sensor_data.humidity));
+//
+//  if ((region == LORAMAC_REGION_US915) || (region == LORAMAC_REGION_AU915)
+//      || (region == LORAMAC_REGION_AS923_GRP1))
+//  {
+//    CayenneLppAddDigitalInput(channel++, GetBatteryLevel());
+//    CayenneLppAddDigitalOutput(channel++, AppLedStateOn);
+//  }
+//
+//  CayenneLppCopy(AppDataBuffer);
+//  bufferSize = CayenneLppGetSize();
+//#else  /* not CAYENNE_LPP */
+//  humidity    = (uint16_t)(sensor_data.humidity * 10);            /* in %*10     */
+//  temperature = (int16_t)(sensor_data.temperature);
+//  pressure = (uint16_t)(sensor_data.pressure * 100 / 10); /* in hPa / 10 */
+//
+//  AppDataBuffer[i++] = HAL_GPIO_ReadPin(LED3_GPIO_Port, LED3_Pin);
+//  AppDataBuffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
+//  AppDataBuffer[i++] = (uint8_t)(pressure & 0xFF);
+//  AppDataBuffer[i++] = (uint8_t)(temperature & 0xFF);
+//  AppDataBuffer[i++] = (uint8_t)((humidity >> 8) & 0xFF);
+//  AppDataBuffer[i++] = (uint8_t)(humidity & 0xFF);
+//
+//  if ((region == LORAMAC_REGION_US915) || (region == LORAMAC_REGION_AU915)
+//      || (region == LORAMAC_REGION_AS923_GRP1))
+//  {
+//    AppDataBuffer[i++] = 0;
+//    AppDataBuffer[i++] = 0;
+//    AppDataBuffer[i++] = 0;
+//    AppDataBuffer[i++] = 0;
+//  }
+//  else
+//  {
+//    latitude = sensor_data.latitude;
+//    longitude = sensor_data.longitude;
+//
+//    AppDataBuffer[i++] = GetBatteryLevel();        /* 1 (very low) to 254 (fully charged) */
+//    AppDataBuffer[i++] = (uint8_t)((latitude >> 16) & 0xFF);
+//    AppDataBuffer[i++] = (uint8_t)((latitude >> 8) & 0xFF);
+//    AppDataBuffer[i++] = (uint8_t)(latitude & 0xFF);
+//    AppDataBuffer[i++] = (uint8_t)((longitude >> 16) & 0xFF);
+//    AppDataBuffer[i++] = (uint8_t)((longitude >> 8) & 0xFF);
+//    AppDataBuffer[i++] = (uint8_t)(longitude & 0xFF);
+//    AppDataBuffer[i++] = (uint8_t)((altitudeGps >> 8) & 0xFF);
+//    AppDataBuffer[i++] = (uint8_t)(altitudeGps & 0xFF);
+//  }
+//
+//  bufferSize = i;
+//#endif /* CAYENNE_LPP */
+//
+//  if (JoinLedTimer.IsRunning)
+//  {
+//    UTIL_TIMER_Stop(&JoinLedTimer);
+//    HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_RESET); /* LED_RED */
+//  }
+//
+//  ASSERT_SMTC_MODEM_RC(smtc_modem_request_uplink(STACK_ID, port, false, AppDataBuffer, bufferSize));
+//
+//  if (EventType == TX_ON_TIMER)
+//  {
+//    smtc_modem_status_mask_t status_mask = 0;
+//    smtc_modem_get_status(STACK_ID, &status_mask);
+//    /* Restart periodical uplink alarm */
+//    /* It is set value by default APP_TX_DUTYCYCLE. If Certification mode is enabled or during join phase, the time is 10s */
+//    if (CertMode || ((status_mask & SMTC_MODEM_STATUS_JOINED) != SMTC_MODEM_STATUS_JOINED))
+//    {
+//      ASSERT_SMTC_MODEM_RC(smtc_modem_alarm_start_timer(CERT_TX_DUTYCYCLE));
+//    }
+//    else
+//    {
+//      ASSERT_SMTC_MODEM_RC(smtc_modem_alarm_start_timer(APP_TX_DUTYCYCLE));
+//    }
+//  }
+//  /* USER CODE END SendTxData_1 */
+//}
 
 /* USER CODE BEGIN PrFD_LedEvents */
 static void OnTxTimerLedEvent(void *context)

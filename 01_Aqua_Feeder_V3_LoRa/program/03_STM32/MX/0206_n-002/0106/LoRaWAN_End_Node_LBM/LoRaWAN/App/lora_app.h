@@ -64,7 +64,7 @@ extern "C" {
  * ( ex: set 30 for a crystal error = 0.3%).
  * Default value is 10
  */
-#define BSP_CRYSTAL_ERROR                           30 // 10 to 30
+#define BSP_CRYSTAL_ERROR                           10
 
 /*!
  * LoRaWAN Certification Mode

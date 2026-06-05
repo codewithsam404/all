@@ -1,10 +1,21 @@
-17:57:46 **** Incremental Build of configuration Debug for project LoRaWAN_End_Node_LBM ****
+11:49:33 **** Incremental Build of configuration Debug for project LoRaWAN_End_Node_LBM ****
 make -j8 all 
-arm-none-eabi-size  LoRaWAN_End_Node_LBM.elf 
-   text	   data	    bss	    dec	    hex	filename
- 111704	   1216	  19296	 132216	  20478	LoRaWAN_End_Node_LBM.elf
-Finished building: default.size.stdout
- 
+arm-none-eabi-gcc "/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/LoRaWAN/App/lora_app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -DNUMBER_OF_STACKS=1 -DSX126X -DENDNODE -c -I"/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/STM32CubeIDE" -I/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/Core/Inc -I../../Middlewares/Third_Party/SubGHz_Phy/lorawan/radio_planner/src -I../../Middlewares/Third_Party/SubGHz_Phy/radio_driver -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac/src/lr1mac_class_b -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac/src/lr1mac_class_c -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_services -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_services/stream_packages -I../../LoRaWAN/App -I../../LoRaWAN/Target -I../../Drivers/STM32WLxx_HAL_Driver/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../../Utilities/trace/adv_trace -I../../Utilities/misc -I../../Utilities/sequencer -I../../Utilities/timer -I../../Utilities/lpm/tiny_lpm -I../../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_api -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_services/service_template -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_services/relay_service -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_services/lfu_service -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_services/store_and_forward -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac/src -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac/src/smtc_real/src -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lr1mac/src/services -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lorawan_api -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lorawan_manager -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_hal -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/smtc_modem_crypto/ -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/smtc_modem_crypto/smtc_secure_element -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/lorawan_packages/lorawan_certification -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_supervisor -I../../Middlewares/Third_Party/LoRaWAN/smtc_modem_core/modem_utilities -I../../Middlewares/Third_Party/SubGHz_Phy/lorawan -I../../Drivers/CMSIS/Include -I../../Drivers/BSP/STM32WLxx_Nucleo -I../../Middlewares/Third_Party/SubGHz_Phy/lorawan/radio_drivers/sx126x_driver/src -I../../Middlewares/Third_Party/SubGHz_Phy/lorawan/smtc_ralf/src -I../../Middlewares/Third_Party/SubGHz_Phy/lorawan/smtc_ral/src -Og -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Application/User/LoRaWAN/App/lora_app.d" -MT"Application/User/LoRaWAN/App/lora_app.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Application/User/LoRaWAN/App/lora_app.o"
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/LoRaWAN/App/lora_app.c: In function 'SendTxData':
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/LoRaWAN/App/lora_app.c:823:5: warning: the address of 'AppDataBuffer' will always evaluate as 'true' [-Waddress]
+  823 |     );
+      |     ^
+/home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/LoRaWAN/App/lora_app.c:821:9: error: passing argument 4 of 'smtc_modem_request_uplink' makes pointer from integer without a cast [-Wint-conversion]
+  821 |         bufferSize,        // payload length
+      |         ^~~~~~~~~~
+      |         |
+      |         uint8_t {aka unsigned char}
+In file included from /home/samuel/git/all/01_Aqua_Feeder_V3_LoRa/program/03_STM32/MX/0206_n-002/0106/LoRaWAN_End_Node_LBM/LoRaWAN/App/lora_app.c:31:
+../../Middlewares/Third_Party/LoRaWAN/smtc_modem_api/smtc_modem_api.h:615:68: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  615 |                                                     const uint8_t* payload, uint8_t payload_length );
+      |                                                     ~~~~~~~~~~~~~~~^~~~~~~
+make: *** [Application/User/LoRaWAN/App/subdir.mk:29: Application/User/LoRaWAN/App/lora_app.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
 
-17:57:46 Build Finished. 0 errors, 0 warnings. (took 192ms)
+11:49:34 Build Failed. 2 errors, 1 warnings. (took 825ms)
 
